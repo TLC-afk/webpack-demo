@@ -3,21 +3,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { options } = require("less");
 
+const base = require("./webpack.config.base.js")
+
 module.exports = {
+  ...base,
   mode: "production",
-  entry: "./src/index.js",
-  devtool: "inline-source-map",
-  devServer: {
-    contentBase: "./dist",
-  },
-  output: {
-    filename: "[name].[contenthash].js",
-  },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: "chen",
-      template: "src/assets/test.html",
-    }),
+  ...base.plugins,
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
       chunkFilename: "[id].[contenthash].css",
